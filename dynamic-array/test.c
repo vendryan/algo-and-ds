@@ -107,8 +107,6 @@ static void test_find(void)
 
 void test(void)
 {
-    DynamicArray test = dynamic_array();
-    
     test_size();
     test_is_empty();
     test_at();
