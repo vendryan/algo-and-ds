@@ -121,11 +121,14 @@ int pop_back(LinkedList *list)
     }
     else
     {
-        Node *ptr = list->head;
-        while (ptr == list->tail)
+        for (Node *ptr = list->head; ptr != NULL; ptr = ptr->next)
         {
-            ptr->next = NULL;
-            break;
+            if (ptr->next == list->tail)
+            {
+                ptr->next = NULL;
+                list->tail = ptr;
+                break;
+            }
         }
     }
     free(to_be_popped);
