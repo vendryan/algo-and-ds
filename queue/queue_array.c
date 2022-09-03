@@ -65,16 +65,19 @@ static int pop(CircularBuffer *buffer)
 
 typedef CircularBuffer QueueArray;
 
+// O(1)
 QueueArray make_queue_array(int size)
 {
     return make_circular_buffer(size);
 }
 
+// O(1)
 void enqueue(QueueArray *queue, int val)
 {
     push(queue, val);
 }
 
+// O(1)
 int dequeue(QueueArray *queue)
 {
     return pop(queue);
