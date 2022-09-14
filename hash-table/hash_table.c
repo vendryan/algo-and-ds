@@ -88,8 +88,9 @@ void add(HashTable *table, int key, int value)
         .initialized=true
     };
     
-    // Linear probing
-    while ((*(table->kvs + index)).initialized)
+    // Linear probing.
+    // When initialized and not deleted, don't hash into that position
+    while ((*(table->kvs + index)).initialized && !(*(table->kvs + index)).is_deleted)
     {
         index = (index + 1) % table->capacity;
     }
