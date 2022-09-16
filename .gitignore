@@ -1,3 +1,5 @@
 # Ignore all executable files
 *.exe
 **/*.exe
+*.bat
+**/*.bat
