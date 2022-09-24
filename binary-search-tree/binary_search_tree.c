@@ -8,9 +8,9 @@
 static BST_Node *BST_insert_node(BST_Node *parent, BST_Node *node, int data);
 static BST_Node *BST_make_new_node(void);
 static int BST_get_node_count_root(BST_Node *node);
-static void print_values_node(BST_Node *node);
-static void delete_tree_node(BST_Node *node);
-static void search(BST_Node *node, int data);
+static void BST_print_values_node(BST_Node *node);
+static void BST_delete_tree_node(BST_Node *node);
+static bool BST_search(BST_Node *node, int data);
 
 BST_BinarySearchTree BST_make_bst(void)
 {
@@ -75,41 +75,41 @@ static int BST_get_node_count_root(BST_Node *node)
     return 1 + BST_get_node_count_root(node->left) + BST_get_node_count_root(node->right);
 }
 
-void print_values(BST_BinarySearchTree *bst)
+void BST_print_values(BST_BinarySearchTree *bst)
 {
-    print_values_node(bst->root);
+    BST_print_values_node(bst->root);
 }
 
-static void print_values_node(BST_Node *node)
+static void BST_print_values_node(BST_Node *node)
 {
     if (node == NULL) return;
-    print_values_node(node->left);
+    BST_print_values_node(node->left);
     printf("%d, ", node->data);
-    print_values_node(node->right);
+    BST_print_values_node(node->right);
 }
 
-void delete_tree(BST_BinarySearchTree *bst)
+void BST_delete_tree(BST_BinarySearchTree *bst)
 {
-    delete_tree_node(bst->root);
+    BST_delete_tree_node(bst->root);
     bst->root = NULL;
 }
 
-static void delete_tree_node(BST_Node *node)
+static void BST_delete_tree_node(BST_Node *node)
 {
     if (node != NULL)
     {
-        delete_tree_node(node->left);
-        delete_tree_node(node->right);
+        BST_delete_tree_node(node->left);
+        BST_delete_tree_node(node->right);
         free(node);
     }
 }
 
-bool is_in_tree(BST_BinarySearchTree *bst, int data)
+bool BST_is_in_tree(BST_BinarySearchTree *bst, int data)
 {
-    return search(bst->root, data);
+    return BST_search(bst->root, data);
 }
 
-static bool search(BST_Node *node, int data)
+static bool BST_search(BST_Node *node, int data)
 {
     if (node != NULL)
     {
@@ -119,12 +119,17 @@ static bool search(BST_Node *node, int data)
         }
         else if (node->data > data) 
         {
-            return search(node->left, data);
+            return BST_search(node->left, data);
         }
         else
         {
-            return search(node->right, data);
+            return BST_search(node->right, data);
         }
     }
     return false;
+}
+
+int get_height(BST_BinarySearchTree *bst)
+{
+    return 0;
 }

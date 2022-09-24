@@ -5,7 +5,6 @@
 
 int main(void)
 {
-    printf("WTFFFF\n");
     test();
     return 0;
 }
